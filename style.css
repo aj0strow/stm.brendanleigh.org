@@ -56,20 +56,25 @@ body {
   font-size: 18px;
 }
 
-circle {
-  cursor: pointer;
+.stm-point {
   fill: #eee;
-  stroke: #fff;
+  stroke: #eee;
 }
 
-circle:hover {
+.stm-target {
+  z-index: 1;
+  cursor: pointer;
+  fill: transparent;
+  stroke: transparent;
+}
+
+.stm-target:hover, .stm-target.active {
   fill: #fff;
-  box-shadow: inset 0 0 30px 15px #fff;
 }
 
 .tipsy {
-  padding-left: 10px;
   padding-bottom: 5px;
+  text-align: center;
 }
 
 .tipsy-inner {

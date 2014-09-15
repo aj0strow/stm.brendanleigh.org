@@ -1,98 +1,118 @@
 $(function () {
-  var $window = $(window)
-  var $background = $('#background')
   var $container = $('#container')
-
+  var $background = $('#background')
+  var $label = $('#metro')
   var $map = $('#map')
+  var $paper = null
+  var $index = -1
 
-  $window.resize(resizeMap)
-  resizeMap()
-  $container.click(hideMap)
-  $background.click(showMap)
+  init()
 
-  $map.click(function (ev) {
-    var point = findTargetPoint(ev)
-    if (point) { setPoint(point) }
-  })
+  function init () {
+    resize()
+    $(window).resize($.debounce(500, resize))
 
-  function findTargetPoint (ev) {
-    var delta = 30
-    var point = findClosestPoint(ev)
-    if (distance({ x: ev.offsetX, y: ev.offsetY }, toPixels(point)) < delta) {
-      ev.preventDefault()
-      ev.stopPropagation()
-      return point
-    } else {
-      return null
-    }
-  }
-
-  function findClosestPoint (ev) {
-    var point = { x: ev.offsetX, y: ev.offsetY }
-    return points.sort(function (a, b) {      
-      var da = distance(point, toPixels(a))
-      var db = distance(point, toPixels(b))
-
-      if (da < db) { return -1 }
-      if (da > db) { return 1 }
-      return 0
-    })[0]
-  }
-
-  function setPoint (point) {
-    $background.show().css({
-      'background-image': 'url("' + point.url + '")',
-      'opacity': 1.0,
+    $(document).keydown(function (ev) {
+      if (ev.keyCode == 39) {
+        next()
+      } else if (ev.keyCode == 37) {
+        prev()
+      }
     })
-    $('#metro').text(point.metro)
-    $('.tipsy').remove()
-    hideMap()
+
+    $background.click(function () {
+      map(true)
+    })
+
+    $container.click(function () {
+      map(false)
+    })
+
+    $map.on('click', '.stm-target', function (ev) {
+      ev.stopPropagation()
+      render(ev.target.dataset)
+    })
   }
 
-  function hideMap () {
-    $container.fadeOut()
+  function next () {
+    $index ++
+    if (!points[$index]) {
+      $index = 0
+    }
+    navigate(points[$index])
   }
 
-  function showMap () {
-    $container.fadeIn()
+  function prev () {
+    $index --
+    if (!points[$index]) {
+      $index = points.length - 1
+    }
+    navigate(points[$index])
   }
 
-  function distance (p1, p2) {
-    var dx = Math.abs(p1.x - p2.x)
-    var dy = Math.abs(p1.y - p2.y)
-    return Math.sqrt(dx * dx + dy * dy)
+  function navigate (point) {
+    map(true)
+    point.target.node.setAttribute('class', 'stm-target active')    
+    setTimeout(function () {
+      point.target.node.setAttribute('class', 'stm-target')
+      render(point)
+    }, 1000)
+  }
+
+  function resize () {
+    // set map height
+    var height = $(window).height() * 1.2
+    var width = height * (800 / 1027) * 1.2
+    $map.width(width).height(height)
+
+    // draw points
+    $paper = Raphael($map[0], width, height)
+    $('circle', $map).remove()
+    points.forEach(plot)
+    tooltip()
+  }
+
+  function plot (point) {
+    // pct to pixels
+    var coords = toPixels(point)
+
+    // draw visible point
+    var circle = $paper.circle(coords.x, coords.y, 4)
+    circle.node.setAttribute('class', 'stm-point')
+
+    // draw invisible larger click area
+    var target = $paper.circle(coords.x, coords.y, 10)
+    target.node.dataset.metro = point.metro
+    target.node.dataset.url = point.url
+    target.node.setAttribute('class', 'stm-target')
+
+    point.target = target
+  }
+
+  function render (data) {
+    $label.text(data.metro)
+    $background.show().css({
+      'background-image': 'url("' + data.url + '")',
+    })
+    map(false)
+  }
+
+  function tooltip () {
+    $('.stm-target').tipsy({ gravity: 's', fade: true, title: 'data-metro' })
+  }
+
+  function map (visible) {
+    if (visible) {
+      return $container.fadeIn()
+    } else {
+      $('.tipsy').remove()
+      return $container.fadeOut()
+    }
   }
 
   function toPixels (point) {
     var width = $map.width()
     var height = $map.height()
     return { x: point.x * width, y: point.y * height }
-  }
-
-  function toPct (point) {
-    var width = $map.width()
-    var height = $map.height()
-    return { x: point.x / width, y: point.y / height }
-  }
-
-  function resizeMap () {
-    // image is only 1027px tall
-    var height = $window.height() * 1.2
-    var width = height * (800 / 1027) * 1.2
-    $map.height(Math.round(height))
-    $map.width(Math.round(width))
-    $('circle').remove()
-    drawPoints()
-  }
-
-  function drawPoints () {
-    var paper = Raphael($map[0], $map.width(), $map.height())
-    var radius = 5
-    points.forEach(function (point) {
-      var coords = toPixels(point)
-      var circle = paper.circle(coords.x, coords.y, radius)
-      circle.node.dataset.name = point.metro
-    })
-    $('circle').tipsy({ gravity: 's', fade: true, title: 'data-name' })
   }
 })
