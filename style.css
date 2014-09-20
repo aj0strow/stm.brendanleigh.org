@@ -1,6 +1,31 @@
 body {
   background: #fff;
   text-transform: uppercase;
+  font-family: 'Dosis', sans-serif;
+}
+
+#copyright {
+  z-index: 5;
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  width: 240px;
+  margin-left: -100px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  display: none;
+  background: #fff;
+  text-align: center;
+  border-radius: 8px;
+}
+
+#home {
+  position: fixed;
+  top: 0;
+  left: 0;
+  color: black;
+  text-decoration: none;
+  padding: 15px;
 }
 
 #background {
@@ -9,7 +34,7 @@ body {
   left: 5px;
   bottom: 5px;
   right: 5px;
-  transition: all .5s linear;
+  transition: all .8s linear;
   background-size: contain;
   background-position: center center;
   background-repeat: no-repeat;
@@ -23,7 +48,7 @@ body {
   left: 0;
   bottom: 0;
   right: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
 #title {
@@ -37,7 +62,7 @@ body {
 
 .banner {
   padding: 16px 24px;
-  font-size: 18px;
+  font-size: 22px;
   color: white;
 }
 
@@ -53,12 +78,64 @@ body {
   background: white;
   color: black;
   padding: 16px 24px;
-  font-size: 18px;
+  font-size: 22px;
+  border-top-right-radius: 8px;
 }
 
-.stm-point {
-  fill: #eee;
-  stroke: #eee;
+#lines {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+}
+
+.stm-line {
+  width: 200px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-align: center;
+}
+
+.stm-line:hover {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+#lines hr {
+  display: inline-block;
+  margin: 0;
+  border: 0;
+  visibility: hidden;
+  height: 1px;
+}
+
+.stm-blue {
+  fill: #0083ca !important;
+  stroke: #0083ca !important;
+  background-color: #0083ca;
+}
+
+.stm-green {
+  fill: #008e4f !important;
+  stroke: #008e4f !important;
+  background-color: #008e4f;
+}
+
+.stm-yellow {
+  fill: #ffe400 !important;
+  stroke: #ffe400 !important;
+  background-color: #ffe400;
+}
+
+.stm-orange {
+  fill: #f08123 !important;
+  stroke: #f08123 !important;
+  background-color: #f08123;
 }
 
 .stm-target {
@@ -68,7 +145,8 @@ body {
   stroke: transparent;
 }
 
-.stm-target:hover, .stm-target.active {
+.stm-target:hover,
+.stm-target.active {
   fill: #fff;
 }
 
