@@ -77,9 +77,14 @@ $(function () {
 
     var station = _.min(stations, distance)
 
-    if (distance(station) > 6) {
+    if (distance(station) < 0) {
+      navigate(station)
+    } else if (stations.length < 2) {
       map(true)
     } else {
+      station = _.find(stations, function (stn) {
+        return stn != _.last($history)
+      })
       navigate(station)
     }
   }
