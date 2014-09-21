@@ -77,7 +77,7 @@ $(function () {
 
     var station = _.min(stations, distance)
 
-    if (distance(station) > 0) {
+    if (distance(station) > 6) {
       map(true)
     } else {
       navigate(station)
@@ -90,8 +90,8 @@ $(function () {
       var index = Math.floor(Math.random() * ids.length)
       station = window.stm[ids[index]]
     }
-    render(station) 
     map(true)
+    render(station) 
     var target = station.target.node
     target.setAttribute('class', 'stm-target active')   
     setTimeout(function () {
