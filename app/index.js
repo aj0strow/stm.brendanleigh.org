@@ -23,9 +23,9 @@ $(function () {
 
   // ui handlers
 
-  $(window).resize($.debounce(500, resize))
+  $(window).resize(_.debounce(resize, 500, false))
 
-  $(document).keydown($.debounce(300, true, keydown))
+  $(document).keydown(_.debounce(keydown, 300, true))
 
   $background.on('click', function (ev) {
     map(true)
