@@ -123,7 +123,7 @@ $(function () {
   }
 
   function resize () {
-    // the ratio 800x2017 is from metro-map.png
+    // the ratio 800x1027 is from metro-map.png
     // magic number 1.2 determined experimentally
     var height = $(window).height() * 1.2
     var width = height * (800 / 1027) * 1.2
