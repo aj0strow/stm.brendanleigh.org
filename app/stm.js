@@ -563,7 +563,7 @@ window.stm = {
   "beaudry": {
     "x": 0.680073126142596,
     "y": 0.42165242165242167,
-    "url": "http://a2.format-assets.com/image/private/s--Q6u4AmqS--/c_limit,g_center,h_1200,w_65535/a_auto,fl_keep_iptc.progressive,q_95/141880-8596057-Beaudry.jpg",
+    "url": "http://a1.format-assets.com/image/private/s--0r1Xz8j_--/c_limit,g_center,h_1200,w_65535/a_auto,fl_keep_iptc.progressive,q_95/141880-10266205-Beaudry_alternate_2_jpg.jpg",
     "color": "#008e4f",
     "id": "beaudry",
     "lines": {
@@ -860,7 +860,7 @@ window.stm = {
   "cote-des-neiges": {
     "x": 0.30895795246800734,
     "y": 0.49572649572649574,
-    "url": "http://a3.format-assets.com/image/private/s--iU9z5RA5--/c_limit,g_center,h_1200,w_65535/a_auto,fl_keep_iptc.progressive,q_95/141880-9340495-Cote-Des-Neiges_2_jpg.jpg",
+    "url": "http://a2.format-assets.com/image/private/s--Gva78IVR--/c_limit,g_center,h_1200,w_65535/a_auto,fl_keep_iptc.progressive,q_95/141880-10266234-Cote_Des_Neiges_alternate_jpg.jpg",
     "color": "#0083ca",
     "id": "cote-des-neiges",
     "lines": {
