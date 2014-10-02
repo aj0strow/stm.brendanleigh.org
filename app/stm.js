@@ -834,7 +834,7 @@ window.stm = {
   "edouard-montpetit": {
     "x": 0.40950639853747717,
     "y": 0.4373219373219373,
-    "url": "http://a3.format-assets.com/image/private/s--gr1Uk6jb--/c_limit,g_center,h_1200,w_65535/a_auto,fl_keep_iptc.progressive,q_95/141880-8737544-Edouard_Montpetit.jpg",
+    "url": "http://a3.format-assets.com/image/private/s--ON-pLIia--/c_limit,g_center,h_1200,w_65535/a_auto,fl_keep_iptc.progressive,q_95/141880-9131208-Universite_de_Montreal_2_jpg.jpg",
     "color": "#0083ca",
     "id": "edouard-montpetit",
     "lines": {
@@ -847,7 +847,7 @@ window.stm = {
   "universite-de-montreal": {
     "x": 0.3583180987202925,
     "y": 0.4672364672364672,
-    "url": "http://a3.format-assets.com/image/private/s--ON-pLIia--/c_limit,g_center,h_1200,w_65535/a_auto,fl_keep_iptc.progressive,q_95/141880-9131208-Universite_de_Montreal_2_jpg.jpg",
+    "url": "http://a1.format-assets.com/image/private/s--VudDSyat--/c_limit,g_center,h_1200,w_65535/a_auto,fl_keep_iptc.progressive,q_95/141880-10303639-Universite_de_Montreal_jpg.jpg",
     "color": "#0083ca",
     "id": "universite-de-montreal",
     "lines": {
